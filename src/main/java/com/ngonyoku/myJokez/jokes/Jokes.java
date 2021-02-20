@@ -1,24 +1,33 @@
-package com.ngonyoku.myJokez.jokez;
+package com.ngonyoku.myJokez.jokes;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
-public class Jokez {
-    private Long id;
-    private String joke;
-    private LocalDate dateCreated;
+@Entity
+@Table
+public class Jokes {
 
-    public Jokez(Long id, String joke, LocalDate dateCreated) {
+    @Id
+    @SequenceGenerator(name = "jokes_generator", sequenceName = "jokes_generator", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jokes_generator")
+    private Long id;
+
+    @Column
+    private String joke;
+    private String dateCreated;
+
+    public Jokes(Long id, String joke, String dateCreated) {
         this.id = id;
         this.joke = joke;
         this.dateCreated = dateCreated;
     }
 
-    public Jokez(String joke, LocalDate dateCreated) {
+    public Jokes(String joke, String dateCreated) {
         this.joke = joke;
         this.dateCreated = dateCreated;
     }
 
-    public Jokez() {
+    public Jokes() {
     }
 
     public Long getId() {
@@ -37,11 +46,11 @@ public class Jokez {
         this.joke = joke;
     }
 
-    public LocalDate getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(LocalDate dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 }
