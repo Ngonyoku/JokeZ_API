@@ -31,4 +31,10 @@ public class JokesController {
     public void postNewJoke(@RequestBody Jokes joke) {
         jokesService.postNewJoke(joke);
     }
+
+    //DELETE functionality in the API
+    @DeleteMapping(path = "{jokeID}")
+    public void deleteSingleJoke(@PathVariable Long jokeID) {
+        jokesService.deleteSingleJoke(jokeID);
+    }
 }

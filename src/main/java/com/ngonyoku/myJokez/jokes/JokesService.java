@@ -26,4 +26,10 @@ public class JokesService {
         joke.setDateCreated(new Timestamp(System.currentTimeMillis()));
         jokesRepository.save(joke);
     }
+
+    public void deleteSingleJoke(Long jokeID) {
+        //Ensure that the JokeID Exists, If it does, Delete the Whole Record, else throw an Exception
+        if (jokesRepository.existsById(jokeID)) jokesRepository.deleteById(jokeID);
+        else throw new IllegalStateException("Joke Does Not Exists");
+    }
 }
