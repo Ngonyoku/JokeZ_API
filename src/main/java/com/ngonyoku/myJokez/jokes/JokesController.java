@@ -1,9 +1,7 @@
 package com.ngonyoku.myJokez.jokes;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +20,15 @@ public class JokesController {
         this.jokesService = jokesService;
     }
 
+    //GET Request for all Jokes
     @GetMapping
     public List<Jokes> getJokes() {
         return jokesService.getJokes();
+    }
+
+    //POST Request for all Jokes
+    @PostMapping
+    public void postNewJoke(@RequestBody Jokes joke) {
+        jokesService.postNewJoke(joke);
     }
 }

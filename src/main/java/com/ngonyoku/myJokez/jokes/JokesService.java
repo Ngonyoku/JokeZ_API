@@ -1,8 +1,8 @@
 package com.ngonyoku.myJokez.jokes;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -20,5 +20,10 @@ public class JokesService {
 
     public List<Jokes> getJokes() {
         return jokesRepository.findAll();//Return all the Jokes
+    }
+
+    public void postNewJoke(Jokes joke) {
+        joke.setDateCreated(new Timestamp(System.currentTimeMillis()));
+        jokesRepository.save(joke);
     }
 }
