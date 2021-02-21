@@ -1,8 +1,10 @@
 package com.ngonyoku.myJokez.jokes;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
+/*
+ * This class is a model of Our table
+ **/
 @Entity
 @Table
 public class Jokes {
@@ -14,6 +16,8 @@ public class Jokes {
 
     @Column
     private String joke;
+
+    @Column
     private String dateCreated;
 
     public Jokes(Long id, String joke, String dateCreated) {
