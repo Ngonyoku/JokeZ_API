@@ -6,14 +6,15 @@ import java.util.Date;
 
 /*
  * This class is a model of Our table
- * We are using PostgreSQL for this
+ * I am using PostgreSQL for this
  *
-       create table jokes (
-           id  bigserial not null,
-            date_created timestamp not null,
-            joke TEXT not null,
-            primary key (id)
-        )
+    create table jokes (
+       id  bigserial not null,
+        date_created timestamp not null,
+        date_updated timestamp,
+        joke TEXT not null,
+        primary key (id)
+    )
     *
  **/
 @Entity
@@ -31,19 +32,26 @@ public class Jokes {
     @Column(nullable = false)
     private Date dateCreated;
 
-    public Jokes(Long id, String joke, Date dateCreated) {
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column
+    private Date dateUpdated;
+
+    public Jokes(Long id, String joke, Date dateCreated, Date dateUpdated) {
         this.id = id;
         this.joke = joke;
         this.dateCreated = dateCreated;
+        this.dateUpdated = dateUpdated;
+    }
+
+    public Jokes(String joke, Date dateCreated, Date dateUpdated) {
+        this.joke = joke;
+        this.dateCreated = dateCreated;
+        this.dateUpdated = dateUpdated;
     }
 
     public Jokes(String joke, Date dateCreated) {
         this.joke = joke;
         this.dateCreated = dateCreated;
-    }
-
-    public Jokes(String joke) {
-        this.joke = joke;
     }
 
     public Jokes() {
@@ -73,12 +81,21 @@ public class Jokes {
         this.dateCreated = dateCreated;
     }
 
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
+
     @Override
     public String toString() {
         return "Jokes{" +
                 "id=" + id +
                 ", joke='" + joke + '\'' +
                 ", dateCreated=" + dateCreated +
+                ", dateUpdated=" + dateUpdated +
                 '}';
     }
 }

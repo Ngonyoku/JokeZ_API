@@ -32,9 +32,14 @@ public class JokesController {
         jokesService.postNewJoke(joke);
     }
 
+    @PutMapping(path = "{jokeId}")
+    public void updateSingleJoke(@PathVariable("jokeId") Long jokeID, @RequestParam String joke) {
+        jokesService.updateSingleJoke(jokeID, joke);
+    }
+
     //DELETE functionality in the API
-    @DeleteMapping(path = "{jokeID}")
-    public void deleteSingleJoke(@PathVariable Long jokeID) {
+    @DeleteMapping(path = "{jokeId}")
+    public void deleteSingleJoke(@PathVariable("jokeId") Long jokeID) {
         jokesService.deleteSingleJoke(jokeID);
     }
 }
