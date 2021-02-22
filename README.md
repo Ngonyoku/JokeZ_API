@@ -1,6 +1,6 @@
 # MyJokez API
 
-This is a simple public REST API created using SpringBoot and Java to store Jokes.
+This is a simple public REST API created using SpringBoot and Java to store Jokes. [Demo](https://myjokez.herokuapp.com/)
 
 ## DATABASE
 - Heroku Postgres (PostgreSQL database)
