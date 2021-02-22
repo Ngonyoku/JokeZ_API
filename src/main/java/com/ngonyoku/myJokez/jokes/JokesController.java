@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /*
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping(path = "api/jokes")
 public class JokesController {
 
-    private JokesService jokesService;
+    private final JokesService jokesService;
 
     @Autowired
     public JokesController(JokesService jokesService) {
@@ -22,8 +23,13 @@ public class JokesController {
 
     //GET Request for all Jokes
     @GetMapping
-    public List<Jokes> getJokes() {
-        return jokesService.getJokes();
+    public List<Jokes> getAllJokes() {
+        return jokesService.getAllJokes();
+    }
+
+    @GetMapping(path = "{jokeId}")
+    public Optional<Jokes> getSingleJoke(@PathVariable("jokeId") Long jokeId) {
+        return jokesService.getSingleJoke(jokeId);
     }
 
     //POST Request for all Jokes

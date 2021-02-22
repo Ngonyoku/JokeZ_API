@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 
 /*
@@ -19,8 +20,12 @@ public class JokesService {
         this.jokesRepository = jokesRepository;
     }
 
-    public List<Jokes> getJokes() {
+    public List<Jokes> getAllJokes() {
         return jokesRepository.findAll();//Return all the Jokes
+    }
+
+    public Optional<Jokes> getSingleJoke(Long jokeId) {
+        return jokesRepository.findById(jokeId);
     }
 
     public void postNewJoke(Jokes joke) {
